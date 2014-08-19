@@ -4,8 +4,8 @@ import pickle
 
 FILENAME = 'lookup.p'
 
-def generate_lookup():
-    f = open('/usr/share/dict/words')
+def generate_lookup(text_file):
+    f = open(text_file)
     # (k,k) : [val,val,....]
     lookup = {}
     for word in f.readlines():
@@ -32,8 +32,14 @@ def generate_words(n):
 
 if __name__=='__main__':
     if 'process' in sys.argv:
-        generate_lookup()
+        if len(sys.argv)>2:
+            input_file = sys.argv[2]
+        else:
+            input_file = '/usr/share/dict/words'
+        generate_lookup(input_file)
     elif 'gen' in sys.argv and len(sys.argv)>2:
         generate_words(int(sys.argv[2]))
     else:
-        print "Usage: python markovwords.py [process | gen n]"
+        print "Usage: "
+        print "python markovwords.py process [input_file]"
+        print "python markovwords.py gen n"
