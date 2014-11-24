@@ -5,8 +5,6 @@ import collections
 
 FILENAME = 'lookup.p'
 
-# TODO lookup should be a default dict, with a Counter in it
-
 def generate_lookup(text_file):
     f = open(text_file)
     # (k,k) : [val,val,....]
